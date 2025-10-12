@@ -12,13 +12,15 @@ public class CidcDeploymentApplication {
         String Result=show();
         System.out.println(Result);
 
-	}
+
+    }
 
 
     public static String show()
     {
-        String message = "Welcome to the CICD";
+        String message = "Welcome to the CICD and java  is programing";
         return message;
+
     }
 
 }
