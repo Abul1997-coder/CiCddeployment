@@ -18,7 +18,7 @@ public class CidcDeploymentApplication {
 
     public static String show()
     {
-        String message = "Welcome to the CICD and java  is programing";
+        String message = "Welcome to the CICD and java  is programing ++git ";
         return message;
 
     }
