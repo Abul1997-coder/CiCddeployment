@@ -1,0 +1,34 @@
+
+name: Deploy Spring Boot to EC2
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy Docker image to EC2
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+            sudo docker pull abul84/cicddeployment:latest
+            sudo docker rm -f cicddeployment-test || true
+            sudo docker run -d \
+              --name cicddeployment-test \
+              --restart unless-stopped \
+              -p 18080:3000 \
+              abul84/cicddeployment:latest
+            sudo docker ps
+            sudo docker logs --tail 30 cicddeployment-test
