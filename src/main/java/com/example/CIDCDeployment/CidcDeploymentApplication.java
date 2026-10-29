@@ -17,7 +17,8 @@ public class CidcDeploymentApplication {
         @GetMapping("/get")
         public String create()
         {
-            return  "Welcome to the CICD pipeline";
+            return  "Welcome to the CICD pipeline" +
+                    "Now CICD pipline working Successfully - Version 2";
 
 
     }
